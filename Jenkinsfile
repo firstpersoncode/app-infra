@@ -84,13 +84,18 @@ pipeline {
             steps {
                 script {
                     if (params.BUILD_CONTAINER) {
-                       // Make sure Docker is installed
-                        sh 'docker --version'
-                        // Ensure docker-compose is installed
+                        sh 'echo "=================Build Container=================="'
+                        sh 'sudo apt install docker.io -y'
+                        sh 'sudo usermod -aG docker ubuntu'
+                        sh 'newgrp docker'
+                        sh 'sudo chmod 777 /var/run/docker.sock'
+                        sh 'docker version'
+                        sh 'sudo systemctl start docker'
+                        sh 'sudo systemctl enable docker'
+                        sh 'sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+                        sh 'sudo chmod +x /usr/local/bin/docker-compose'
                         sh 'docker-compose --version'
-                        // Build and start containers in the background
                         sh 'docker-compose -f $DOCKER_COMPOSE_FILE up -d --build'
-                         // Check if all containers are running
                         sh '''
                         containers=$(docker-compose -f $DOCKER_COMPOSE_FILE ps -q)
                         for container in $containers; do
