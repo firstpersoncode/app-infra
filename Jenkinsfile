@@ -15,7 +15,7 @@ pipeline {
 
                 // Clone the Git repository
                 git branch: 'main',
-                    url: 'https://github.com/firstpersoncode/nest-infra.git'
+                    url: 'https://github.com/firstpersoncode/app-infra.git'
 
                 sh "ls -lart"
             }

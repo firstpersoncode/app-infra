@@ -68,10 +68,10 @@ node -v
 # Instal postgres
 # sudo apt install postgresql
 
-git clone https://github.com/firstpersoncode/nest-infra.git
+git clone https://github.com/firstpersoncode/app-infra.git
 sleep 20
 # shellcheck disable=SC2164
-cd nest-infra
+cd app-infra
 npm install
 npm run build
 npm run start
