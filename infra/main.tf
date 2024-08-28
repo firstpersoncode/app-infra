@@ -19,7 +19,7 @@ module "security_group" {
   ec2_sg_name                = "SG for EC2 to enable SSH(22) and HTTP(80)"
   vpc_id                     = module.networking.dev_proj_1_vpc_id
   public_subnet_cidr_block   = tolist(module.networking.public_subnet_cidr_block)
-  ec2_sg_name_for_python_api = "SG for EC2 for enabling port 5000"
+  ec2_sg_name_for_python_api = "SG for EC2 for enabling port 8000"
 }
 
 module "ec2" {
@@ -38,7 +38,7 @@ module "ec2" {
 module "lb_target_group" {
   source                   = "./load-balancer-target-group"
   lb_target_group_name     = "dev-proj-1-lb-target-group"
-  lb_target_group_port     = 5000
+  lb_target_group_port     = 8000
   lb_target_group_protocol = "HTTP"
   vpc_id                   = module.networking.dev_proj_1_vpc_id
   ec2_instance_id          = module.ec2.dev_proj_1_ec2_instance_id
@@ -54,13 +54,13 @@ module "alb" {
   tag_name                  = "dev-proj-1-alb"
   lb_target_group_arn       = module.lb_target_group.dev_proj_1_lb_target_group_arn
   ec2_instance_id           = module.ec2.dev_proj_1_ec2_instance_id
-  lb_listner_port           = 5000
+  lb_listner_port           = 8000
   lb_listner_protocol       = "HTTP"
   lb_listner_default_action = "forward"
   lb_https_listner_port     = 443
   lb_https_listner_protocol = "HTTPS"
   dev_proj_1_acm_arn        = module.aws_ceritification_manager.dev_proj_1_acm_arn
-  lb_target_group_attachment_port = 5000
+  lb_target_group_attachment_port = 8000
 }
 
 module "hosted_zone" {
@@ -76,13 +76,13 @@ module "aws_ceritification_manager" {
   hosted_zone_id = module.hosted_zone.hosted_zone_id
 }
 
-module "rds_db_instance" {
-  source               = "./rds"
-  db_subnet_group_name = "dev_proj_1_rds_subnet_group"
-  subnet_groups        = tolist(module.networking.dev_proj_1_public_subnets)
-  rds_mysql_sg_id      = module.security_group.rds_mysql_sg_id
-  mysql_db_identifier  = "mydb"
-  mysql_username       = "dbuser"
-  mysql_password       = "dbpassword"
-  mysql_dbname         = "devprojdb"
-}
+# module "rds_db_instance" {
+#   source               = "./rds"
+#   db_subnet_group_name = "dev_proj_1_rds_subnet_group"
+#   subnet_groups        = tolist(module.networking.dev_proj_1_public_subnets)
+#   rds_mysql_sg_id      = module.security_group.rds_mysql_sg_id
+#   mysql_db_identifier  = "mydb"
+#   mysql_username       = "dbuser"
+#   mysql_password       = "dbpassword"
+#   mysql_dbname         = "devprojdb"
+# }
