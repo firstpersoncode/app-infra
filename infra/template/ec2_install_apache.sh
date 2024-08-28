@@ -69,19 +69,11 @@ node -v
 # Instal postgres
 # sudo apt install postgresql
 
-git clone https://github.com/firstpersoncode/app-infra.git
-sleep 20
+# git clone https://github.com/firstpersoncode/app-infra.git
+# sleep 20
 # shellcheck disable=SC2164
-cd app-infra
+# cd app-infra
 # npm install
 # npm run build
 # npm run start
-
-cat <<EOF > /home/ubuntu/app-infra/.env
-BUILD_ENV=${BUILD_ENV}
-EOF
-
-chown ubuntu:ubuntu /home/ubuntu/app-infra/.env
-chmod 600 /home/ubuntu/app-infra/.env
-
-docker-compose up -d
+# sleep 30
