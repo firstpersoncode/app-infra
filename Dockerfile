@@ -13,6 +13,8 @@ RUN npm install --production
 # Copy the rest of the app source code to the working directory
 COPY . .
 
+copy .env .env
+
 Run npm run build
 
 # Expose the port on which the app will run
