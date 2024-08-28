@@ -19,7 +19,7 @@ module "security_group" {
   ec2_sg_name                = "SG for EC2 to enable SSH(22) and HTTP(80)"
   vpc_id                     = module.networking.dev_proj_1_vpc_id
   public_subnet_cidr_block   = tolist(module.networking.public_subnet_cidr_block)
-  ec2_sg_name_for_python_api = "SG for EC2 for enabling port 8000"
+  ec2_sg_name_for_node_api = "SG for EC2 for enabling port 8000"
 }
 
 module "ec2" {
@@ -30,7 +30,7 @@ module "ec2" {
   public_key               = var.public_key
   subnet_id                = tolist(module.networking.dev_proj_1_public_subnets)[0]
   sg_enable_ssh_https      = module.security_group.sg_ec2_sg_ssh_http_id
-  ec2_sg_name_for_python_api     = module.security_group.sg_ec2_for_python_api
+  ec2_sg_name_for_node_api     = module.security_group.sg_ec2_for_python_api
   enable_public_ip_address = true
   user_data_install_apache = templatefile("./template/ec2_install_apache.sh", {})
 }

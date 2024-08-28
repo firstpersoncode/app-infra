@@ -6,7 +6,7 @@ variable "subnet_id" {}
 variable "sg_enable_ssh_https" {}
 variable "enable_public_ip_address" {}
 variable "user_data_install_apache" {}
-variable "ec2_sg_name_for_python_api" {}
+variable "ec2_sg_name_for_node_api" {}
 
 output "ssh_connection_string_for_ec2" {
   value = format("%s%s", "ssh -i /home/ubuntu/.ssh/id_rsa_terraform_jenkins ubuntu@", aws_instance.dev_proj_1_ec2.public_ip)
@@ -24,7 +24,7 @@ resource "aws_instance" "dev_proj_1_ec2" {
   }
   key_name                    = "id_rsa_terraform_jenkins"
   subnet_id                   = var.subnet_id
-  vpc_security_group_ids      = [var.sg_enable_ssh_https, var.ec2_sg_name_for_python_api]
+  vpc_security_group_ids      = [var.sg_enable_ssh_https, var.ec2_sg_name_for_node_api]
   associate_public_ip_address = var.enable_public_ip_address
 
   user_data = var.user_data_install_apache

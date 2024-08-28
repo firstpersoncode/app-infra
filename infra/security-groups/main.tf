@@ -1,7 +1,7 @@
 variable "ec2_sg_name" {}
 variable "vpc_id" {}
 variable "public_subnet_cidr_block" {}
-variable "ec2_sg_name_for_python_api" {}
+variable "ec2_sg_name_for_node_api" {}
 
 output "sg_ec2_sg_ssh_http_id" {
   value = aws_security_group.ec2_sg_ssh_http.id
@@ -12,7 +12,7 @@ output "rds_mysql_sg_id" {
 }
 
 output "sg_ec2_for_python_api" {
-  value = aws_security_group.ec2_sg_python_api.id
+  value = aws_security_group.ec2_sg_app_api.id
 
 }
 resource "aws_security_group" "ec2_sg_ssh_http" {
@@ -75,8 +75,10 @@ resource "aws_security_group" "rds_mysql_sg" {
   }
 }
 
-resource "aws_security_group" "ec2_sg_python_api" {
-  name        = var.ec2_sg_name_for_python_api
+# Security Group for EC2 to allow traffic on port 8000
+
+resource "aws_security_group" "ec2_sg_app_api" {
+  name        = var.ec2_sg_name_for_node_api
   description = "Enable the Port 8000 for python api"
   vpc_id      = var.vpc_id
 
