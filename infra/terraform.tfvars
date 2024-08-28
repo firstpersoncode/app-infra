@@ -8,7 +8,7 @@ cidr_public_subnet   = ["10.0.1.0/24", "10.0.2.0/24"]
 cidr_private_subnet  = ["10.0.3.0/24", "10.0.4.0/24"]
 eu_availability_zone = ["ap-southeast-1a", "ap-southeast-1b"]
 
-public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkrroER64F2sM34lQfqgToFRmMz14NgFDND6eyLLE2T5AAu+i580ejIfMQZZEtAVMjLI6CRCN1yMDGH5puEoo+lYZmiEyDdZz8gSSsx1PkKa3dp2vX6Fplq0JqFUnrQVswN3qZvAzXYHFF5xGdo0GBhOjy90rrk/7bkz4xzSfKUuiTeZPKrXxdoWsshZf3XmpFJt3/FsX3SzQPR8IvBzKL3ApPyo7TlRSLZbnMAkVCZH6bT/TWfe7x11Rg3Srv5eBRCFHgFHhPzqQ7miF6szneIzEfVFSaHzXSDkg8rqBnfVdB0tcRkrS0fmhrASgwCUJSwn/YARU5ndI7jYYBoqzuUbgvCK2yJXsA8EYbXrKorMu6MCBolgpwQ5ii2Dba9cnTV7TbGXFhUYg7QCbJsb7UVtIa5joJYI/yLpieu+FZVqulezEATnf2ECQA24cY7nrFePGC6ycQsNvlQ3hIKXZMbVCodvoQlOY3dSHBMvZpvKzay3ro42pyfRgR+pr3fVk= nassermaronie@Nassers-MacBook-Pro.local"
+public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCoALPvQcQnQyhS6C9+jhYrLOGEuZZKSzWHwC1Y7KGa3Z0DulbSbfTrqDzWe7/YcH8gaT1Aizspc3cjPjKHi862PTtKazJe17P0u5R01M5nTJdQ6FbIC34OPSPVS5UwJZ3S8fc/rdWfd8YXwXEN453Q5ZaZz0gZa9XJ+YjuidNp12GkswuJOKpxUXZyE9chsY1FIzCh31Y46YN+Fmz3jI4r3HKnQ733j4hqg6YUnAcwNyJmQBI8NDjcFNyll8kE530Tro0RFsIKbBzUjeONIdmi8BAaKlLgKQpt590eYHx0bRzXtiA23YdZswar8zkggvFHVJ5sL0+KQWooX3cLjTjifdYNVyXaHkYrFhuOJjRlQCCDGTkd/Q+7zZGHyk2+t/6lHpg4kV5mWmURM1NtI7+Y6e3xot+ZseUYaPNkzs9iq9pPE0DDwo5xw2ssvg1Nxq2LEJFxDBAm9Kbts/uXWOFCrYYBpWADn03Jg172KeGd3Qzk/T1lTZFSDBFv6cHdlMU= ubuntu@ip-10-0-1-170"
 ec2_ami_id     = "ami-0497a974f8d5dcef8"
 
 ec2_user_data_install_apache = ""

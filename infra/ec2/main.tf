@@ -9,7 +9,7 @@ variable "user_data_install_apache" {}
 variable "ec2_sg_name_for_python_api" {}
 
 output "ssh_connection_string_for_ec2" {
-  value = format("%s%s", "ssh -i /home/ubuntu/keys/id_rsa_terraform_jenkins ubuntu@", aws_instance.dev_proj_1_ec2.public_ip)
+  value = format("%s%s", "ssh -i /home/ubuntu/.ssh/id_rsa_terraform_jenkins ubuntu@", aws_instance.dev_proj_1_ec2.public_ip)
 }
 
 output "dev_proj_1_ec2_instance_id" {
