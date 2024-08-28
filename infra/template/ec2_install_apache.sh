@@ -56,7 +56,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 nvm --version
-nvm install node
+nvm install --lts
+nvm use --lts
 node -v
 
 # docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
@@ -71,8 +72,8 @@ node -v
 git clone https://github.com/firstpersoncode/app-infra.git
 sleep 20
 # shellcheck disable=SC2164
-cd app-infra
-npm install
-npm run build
-npm run start
-sleep 30
+# cd app-infra
+# npm install
+# npm run build
+# npm run start
+# sleep 30
