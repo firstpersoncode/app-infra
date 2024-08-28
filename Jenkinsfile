@@ -61,6 +61,7 @@ pipeline {
                             script {
                                 dir('infra') {
                                     sh 'echo "=================Terraform Apply=================="'
+                                    sh 'terraform apply -var -auto-approve'
                                     sh """
                                     terraform apply -var \
                                     "build_env=${BUILD_ENV}" \
