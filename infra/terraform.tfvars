@@ -13,4 +13,4 @@ ec2_ami_id     = "ami-0497a974f8d5dcef8"
 
 ec2_user_data_install_apache = ""
 
-domain_name = "dev.shadowghosts.xyz"
+domain_name = "shadowghosts.xyz"
