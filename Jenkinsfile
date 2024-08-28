@@ -10,8 +10,8 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // deleteDir()
-                git branch: 'main',
+                deleteDir()
+                git branch: 'master',
                     url: 'https://github.com/firstpersoncode/app-infra.git'
 
                 sh "ls -lart"
