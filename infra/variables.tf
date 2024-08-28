@@ -61,4 +61,5 @@ variable "domain_name" {
 variable "build_env" {
   type        = string
   description = "BUILD_ENV"
+  default = "dev"
 }
