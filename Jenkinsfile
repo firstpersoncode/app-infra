@@ -58,15 +58,13 @@ pipeline {
                 script {
                     if (params.APPLY_TERRAFORM) {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-crendentails-jenkins'], string(credentialsId: 'BUILD_ENV', variable: 'BUILD_ENV')]){
-                            script {
-                                dir('infra') {
-                                    sh 'echo "=================Terraform Apply=================="'
-                                    sh """
-                                    terraform apply -var \
-                                    "build_env=${BUILD_ENV}" \
-                                    -auto-approve
-                                    """
-                                }
+                            dir('infra') {
+                                sh 'echo "=================Terraform Apply=================="'
+                                sh """
+                                terraform apply -var \
+                                "build_env=${BUILD_ENV}" \
+                                -auto-approve
+                                """
                             }
                         }
                     }
