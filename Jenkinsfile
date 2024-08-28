@@ -17,7 +17,7 @@ pipeline {
                 sh "ls -lart"
             }
         }
-a
+
         stage('Terraform Init') {
                     steps {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-crendentails-jenkins']]){
