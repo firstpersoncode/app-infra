@@ -69,8 +69,8 @@ node -v
 # Instal postgres
 # sudo apt install postgresql
 
-git clone https://github.com/firstpersoncode/app-infra.git
-sleep 20
+# git clone https://github.com/firstpersoncode/app-infra.git
+# sleep 20
 # shellcheck disable=SC2164
 # cd app-infra
 # npm install
