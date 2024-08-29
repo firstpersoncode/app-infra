@@ -25,9 +25,10 @@ pipeline {
         }
 
         stage('Terraform Init') {
-                    steps {
-                        if (params.PLAN_TERRAFORM) {
-                            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-crendentails-jenkins']]){
+            steps {
+                script {
+                    if (params.PLAN_TERRAFORM) {
+                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-crendentails-jenkins']]){
                                 dir('infra') {
                                 sh 'echo "=================Terraform Init=================="'
                                 sh 'terraform init'
@@ -35,6 +36,7 @@ pipeline {
                         }
                     }
                 }
+            }
         }
 
         stage('Terraform Plan') {
