@@ -90,8 +90,8 @@ pipeline {
                 script {
                     if (params.BUILD_DOCKER) {
                         withCredentials([sshUserPrivateKey(credentialsId: 'ssh-ec2-credentials-key', keyFileVariable: 'IDENTITY', usernameVariable: 'USER'), string(credentialsId: 'ssh-ec2-host', variable: 'HOST')]) {
-                            remote.name = 'ssh-ec2'
-                            remote.host = "${USER}@${HOST}"
+                            remote.name = USER
+                            remote.host = HOST
                             remote.user = USER
                             remote.password = IDENTITY
                             remote.allowAnyHosts = true
