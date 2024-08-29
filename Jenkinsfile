@@ -90,31 +90,31 @@ pipeline {
                 script {
                     if (params.BUILD_DOCKER) {
                         withCredentials([sshUserPrivateKey(credentialsId: 'ssh-ec2-credentials-key', keyFileVariable: 'IDENTITY', usernameVariable: 'USER'), string(credentialsId: 'ssh-ec2-host', variable: 'HOST')]) {
-                            // remote.name = USER
-                            // remote.host = HOST
-                            // remote.user = USER
-                            // remote.password = IDENTITY
-                            // remote.allowAnyHosts = true
-                            // stage('Remote SSH') {
-                            //     // writeFile file: 'abc.sh', text: 'ls -lrt'
-                            //     // sshScript remote: remote, script: "abc.sh"
+                            remote.name = USER
+                            remote.host = HOST
+                            remote.user = USER
+                            remote.password = IDENTITY
+                            remote.allowAnyHosts = true
+                            stage('Remote SSH') {
+                                // writeFile file: 'abc.sh', text: 'ls -lrt'
+                                // sshScript remote: remote, script: "abc.sh"
 
-                            //     // navigate to the project directory
-                            //     // sshCommand remote: remote, command: 'cd ./app-infra && ls -lart'
-                            //     sshCommand remote: remote, command: 'touch hello'
-                            //     // pull the latest changes from the repository
-                            //     // sshCommand remote: remote, command: 'git pull origin master'
-                            //     // sshCommand remote: remote, command: 'touch hello.txt'
-                            //     // build the docker images using docker compose
-                            //     // sshCommand remote: remote, command: 'docker-compose up -d --build'
-                            // }
-                            sshagent(credentials: ['ssh-ec2-credentials-key']) {
-                                sh '''
-                                ssh -o StrictHostKeyChecking=no $USER@$HOST << EOF
-                                    touch hello
-                                EOF
-                                '''
+                                // navigate to the project directory
+                                // sshCommand remote: remote, command: 'cd ./app-infra && ls -lart'
+                                sshCommand remote: remote, command: 'touch hello'
+                                // pull the latest changes from the repository
+                                // sshCommand remote: remote, command: 'git pull origin master'
+                                // sshCommand remote: remote, command: 'touch hello.txt'
+                                // build the docker images using docker compose
+                                // sshCommand remote: remote, command: 'docker-compose up -d --build'
                             }
+                            // sshagent(credentials: ['ssh-ec2-credentials-key']) {
+                            //     sh '''
+                            //     ssh -o StrictHostKeyChecking=no $USER@$HOST << EOF
+                            //         touch hello
+                            //     EOF
+                            //     '''
+                            // }
                                     
                         }
 
