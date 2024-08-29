@@ -110,7 +110,7 @@ pipeline {
                             // }
                             sshagent(credentials: ['ssh-ec2-credentials-key']) {
                                 sh '''
-                                ssh -o StrictHostKeyChecking=no $USER@$HOST << EOF
+                                ssh -o StrictHostKeyChecking=no ubuntu@54.206.125.96 << EOF
                                     cd ./app-infra
                                     git pull origin master
                                     docker-compose up -d --build
