@@ -88,53 +88,35 @@ pipeline {
             steps {
                 script {
                     if (params.BUILD_DOCKER) {
-                        withCredentials([sshUserPrivateKey(credentialsId: 'ssh-ec2-credentials-key', keyFileVariable: 'IDENTITY', usernameVariable: 'USERNAME'), string(credentialsId: 'ssh-ec2-host', variable: 'HOST')]) {
+                        withCredentials([sshUserPrivateKey(credentialsId: 'ssh-ec2-credentials-key', keyFileVariable: 'IDENTITY', usernameVariable: 'USER'), string(credentialsId: 'ssh-ec2-host', variable: 'HOST')]) {
                             // some block
-                            def remote = [:]
-                            remote.name = 'ssh-ec2'
-                            remote.host = '$HOST'
-                            remote.user = '$USERNAME'
-                            remote.password = '$IDENTITY'
-                            remote.allowAnyHosts = true
-                            stage('Remote SSH') {
-                                // writeFile file: 'abc.sh', text: 'ls -lrt'
-                                // sshScript remote: remote, script: "abc.sh"
+                            // def remote = [:]
+                            // remote.name = 'ssh-ec2'
+                            // remote.host = '$HOST'
+                            // remote.user = '$USERNAME'
+                            // remote.password = '$IDENTITY'
+                            // remote.allowAnyHosts = true
+                            // stage('Remote SSH') {
+                            //     // writeFile file: 'abc.sh', text: 'ls -lrt'
+                            //     // sshScript remote: remote, script: "abc.sh"
 
-                                // navigate to the project directory
-                                sshCommand remote: remote, command: 'cd ./app-infra'
-                                // pull the latest changes from the repository
-                                sshCommand remote: remote, command: 'git pull origin master'
-                                sshCommand remote: remote, command: 'touch hello.txt'
-                                // build the docker images using docker compose
-                                sshCommand remote: remote, command: 'docker-compose up -d --build'
+                            //     // navigate to the project directory
+                            //     sshCommand remote: remote, command: 'cd ./app-infra'
+                            //     // pull the latest changes from the repository
+                            //     sshCommand remote: remote, command: 'git pull origin master'
+                            //     sshCommand remote: remote, command: 'touch hello.txt'
+                            //     // build the docker images using docker compose
+                            //     sshCommand remote: remote, command: 'docker-compose up -d --build'
+                            // }
+                            sh '''
+                            ssh -o StrictHostKeyChecking=no $USER@<$HOST> << EOF
+                                # Navigate to your project directory
+                                cd ./app-infra
+                                git pull origin master
+                                docker-compose up -d --build
+                            EOF
+                            '''
                             }
-                        }
-
-                        // withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-crendentails-jenkins']]){
-                        //     sh 'echo "=================Build Container=================="'
-                        //     // sh 'sudo apt install docker.io -y'
-                        //     // sh 'sudo usermod -aG docker ubuntu'
-                        //     // sh 'newgrp docker'
-                        //     // sh 'sudo chmod 777 /var/run/docker.sock'
-                        //     sh 'docker version'
-                        //     // sh 'sudo systemctl start docker'
-                        //     // sh 'sudo systemctl enable docker'
-                        //     // sh 'sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
-                        //     // sh 'sudo chmod +x /usr/local/bin/docker-compose'
-                        //     // sh 'docker-compose --version'
-                        //     sh 'docker-compose -f $DOCKER_COMPOSE_FILE up -d --build'
-                        //     sh '''
-                        //     containers=$(docker-compose -f $DOCKER_COMPOSE_FILE ps -q)
-                        //     for container in $containers; do
-                        //         status=$(docker inspect --format="{{.State.Status}}" $container)
-                        //         if [ "$status" != "running" ]; then
-                        //             echo "Container $container is not running"
-                        //             exit 1
-                        //         fi
-                        //     done
-                        //     echo "All containers are running"
-                        //     '''
-                        // }
 
                         // sshagent(credentials: ['ssh-ec2-credentials-key']) {
                         //     sh '''
