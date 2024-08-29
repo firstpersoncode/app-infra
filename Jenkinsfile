@@ -108,15 +108,18 @@ pipeline {
                             //     // build the docker images using docker compose
                             //     sshCommand remote: remote, command: 'docker-compose up -d --build'
                             // }
-                            sh '''
-                            ssh -o StrictHostKeyChecking=no $USER@<$HOST> << EOF
-                                # Navigate to your project directory
-                                cd ./app-infra
-                                git pull origin master
-                                docker-compose up -d --build
-                            EOF
-                            '''
+                            sshagent(credentials: ['ssh-ec2-credentials-key']) {
+                                sh '''
+                                ssh -o StrictHostKeyChecking=no $USER@<$HOST> << EOF
+                                    # Navigate to your project directory
+                                    cd ./app-infra
+                                    git pull origin master
+                                    docker-compose up -d --build
+                                EOF
+                                '''
                             }
+                                    
+                        }
 
                         // sshagent(credentials: ['ssh-ec2-credentials-key']) {
                         //     sh '''
