@@ -100,7 +100,8 @@ pipeline {
                                 // sshScript remote: remote, script: "abc.sh"
 
                                 // navigate to the project directory
-                                sshCommand remote: remote, command: 'cd ./app-infra && ls -lart'
+                                // sshCommand remote: remote, command: 'cd ./app-infra && ls -lart'
+                                sshCommand remote: remote, command: 'touch hello'
                                 // pull the latest changes from the repository
                                 // sshCommand remote: remote, command: 'git pull origin master'
                                 // sshCommand remote: remote, command: 'touch hello.txt'
