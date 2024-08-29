@@ -92,7 +92,7 @@ pipeline {
                             remote.name = 'ssh-ec2'
                             remote.host = '$HOST'
                             remote.user = '$USERNAME'
-                            remote.identity = '$IDENTITY'
+                            remote.password = '$IDENTITY'
                             remote.allowAnyHosts = true
                             stage('Remote SSH') {
                                 // writeFile file: 'abc.sh', text: 'ls -lrt'
