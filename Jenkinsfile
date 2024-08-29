@@ -88,9 +88,9 @@ pipeline {
                             // some block
                             def remote = [:]
                             remote.name = 'ssh-ec2'
-                            remote.host = $HOST
-                            remote.user = $USERNAME
-                            remote.identity = $IDENTITY
+                            remote.host = '$HOST'
+                            remote.user = '$USERNAME'
+                            remote.identity = '$IDENTITY'
                             remote.allowAnyHosts = true
                             stage('Remote SSH') {
                                 // writeFile file: 'abc.sh', text: 'ls -lrt'
