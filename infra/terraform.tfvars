@@ -8,7 +8,7 @@ cidr_public_subnet   = ["10.0.1.0/24", "10.0.2.0/24"]
 cidr_private_subnet  = ["10.0.3.0/24", "10.0.4.0/24"]
 eu_availability_zone = ["ap-southeast-2a", "ap-southeast-2b"]
 
-public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCoALPvQcQnQyhS6C9+jhYrLOGEuZZKSzWHwC1Y7KGa3Z0DulbSbfTrqDzWe7/YcH8gaT1Aizspc3cjPjKHi862PTtKazJe17P0u5R01M5nTJdQ6FbIC34OPSPVS5UwJZ3S8fc/rdWfd8YXwXEN453Q5ZaZz0gZa9XJ+YjuidNp12GkswuJOKpxUXZyE9chsY1FIzCh31Y46YN+Fmz3jI4r3HKnQ733j4hqg6YUnAcwNyJmQBI8NDjcFNyll8kE530Tro0RFsIKbBzUjeONIdmi8BAaKlLgKQpt590eYHx0bRzXtiA23YdZswar8zkggvFHVJ5sL0+KQWooX3cLjTjifdYNVyXaHkYrFhuOJjRlQCCDGTkd/Q+7zZGHyk2+t/6lHpg4kV5mWmURM1NtI7+Y6e3xot+ZseUYaPNkzs9iq9pPE0DDwo5xw2ssvg1Nxq2LEJFxDBAm9Kbts/uXWOFCrYYBpWADn03Jg172KeGd3Qzk/T1lTZFSDBFv6cHdlMU= ubuntu@ip-10-0-1-170"
+public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCcdmgoHFvUjnlX+xIb8vHmjLWgjWDX528mU1Fl2ewdcU0gSK++GIpG3ZQJCxZGtH5bQDDwyAik/1qvypWsasmZE3WGS+9RrUYPKfWp1RuBubJ8IoNNlhld/igy7xkxlVEGNJqk2Oe+a8G+Jo+bArBKCwT1gSmWCHm06A9h6l2xjymm2DUIO38faYj32b+dfViU9/ZK/Tet/aqrhUvKjrSCp9wqp07GoBvuIRSWnFXaH6Jg75/A70MBdtpQM28cvACWSt6flmOgQPWvduI21urpPELND0bYJD0KUDsJose3/J9pl4bBei0s5FL4SL61AYX7aiF3clDiysQxVoEHGro6CjBh1Wrj3aS6W2T1WZgF6ghYrgLH4hKI42PmlK1gq6wy1R6BrizzCDtsIcRZZoi56xkysd57x0r+zR+cuH3d0uY84SiSvgT/NeCJOWSNbxihBuit47e5FevuD5H801BDqv7C2g+Bt2HK/nbuFA+AS3o3vRkISZKDRUeGEn/cu0k= ubuntu@ip-11-0-1-205"
 ec2_ami_id     = "ami-0375ab65ee943a2a6"
 
 ec2_user_data_install_apache = ""
