@@ -100,6 +100,7 @@ pipeline {
                                 sshCommand remote: remote, command: 'cd ./app-infra'
                                 // pull the latest changes from the repository
                                 sshCommand remote: remote, command: 'git pull origin master'
+                                sshCommand remote: remote, command: 'touch hello.txt'
                                 // build the docker images using docker compose
                                 sshCommand remote: remote, command: 'docker-compose up -d --build'
                             }
