@@ -10,7 +10,7 @@ pipeline {
             booleanParam(name: 'PLAN_TERRAFORM', defaultValue: false, description: 'Check to plan Terraform changes')
             booleanParam(name: 'APPLY_TERRAFORM', defaultValue: false, description: 'Check to apply Terraform changes')
             booleanParam(name: 'DESTROY_TERRAFORM', defaultValue: false, description: 'Check to apply Terraform changes')
-            booleanParam(name: 'BUILD_CONTAINER', defaultValue: false, description: 'Check to build Docker Container')
+            booleanParam(name: 'BUILD_DOCKER', defaultValue: false, description: 'Check to build Docker Container')
     }
 
     stages {
@@ -83,7 +83,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 script {
-                    if (params.BUILD_CONTAINER) {
+                    if (params.BUILD_DOCKER) {
                         withCredentials([sshUserPrivateKey(credentialsId: 'ssh-ec2-credentials-key', keyFileVariable: 'IDENTITY', usernameVariable: 'USERNAME'), string(credentialsId: 'ssh-ec2-host', variable: 'HOST')]) {
                             // some block
                             def remote = [:]
