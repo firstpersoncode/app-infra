@@ -27,7 +27,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    if (params.PLAN_TERRAFORM) {
+                    if (params.PLAN_TERRAFORM || params.APPLY_TERRAFORM || params.DESTROY_TERRAFORM) {
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-crendentails-jenkins']]){
                                 dir('infra') {
                                 sh 'echo "=================Terraform Init=================="'
