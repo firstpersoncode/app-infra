@@ -10,7 +10,7 @@ pipeline {
             booleanParam(name: 'PLAN_TERRAFORM', defaultValue: false, description: 'Check to plan Terraform changes')
             booleanParam(name: 'APPLY_TERRAFORM', defaultValue: false, description: 'Check to apply Terraform changes')
             booleanParam(name: 'DESTROY_TERRAFORM', defaultValue: false, description: 'Check to apply Terraform changes')
-            // booleanParam(name: 'BUILD_CONTAINER', defaultValue: false, description: 'Check to build Docker Container')
+            booleanParam(name: 'BUILD_CONTAINER', defaultValue: false, description: 'Check to build Docker Container')
     }
 
     stages {
