@@ -1,9 +1,10 @@
+def remote = [:]
 pipeline {
     agent any
 
     environment {
-        COMPOSE_PROJECT_NAME = "dev_project_1" // Set a unique project name
-        DOCKER_COMPOSE_FILE = "docker-compose.yml"
+        EC2_CREDS = credentials('ssh-ec2-credentials-key')
+        EC2_HOST = credentials('ssh-ec2-host')
     }
 
     parameters {
@@ -89,34 +90,32 @@ pipeline {
                 script {
                     if (params.BUILD_DOCKER) {
                         withCredentials([sshUserPrivateKey(credentialsId: 'ssh-ec2-credentials-key', keyFileVariable: 'IDENTITY', usernameVariable: 'USER'), string(credentialsId: 'ssh-ec2-host', variable: 'HOST')]) {
-                            // some block
-                            // def remote = [:]
-                            // remote.name = 'ssh-ec2'
-                            // remote.host = '$HOST'
-                            // remote.user = '$USERNAME'
-                            // remote.password = '$IDENTITY'
-                            // remote.allowAnyHosts = true
-                            // stage('Remote SSH') {
-                            //     // writeFile file: 'abc.sh', text: 'ls -lrt'
-                            //     // sshScript remote: remote, script: "abc.sh"
+                            remote.name = 'ssh-ec2'
+                            remote.host = '$HOST'
+                            remote.user = '$USER'
+                            remote.password = '$IDENTITY'
+                            remote.allowAnyHosts = true
+                            stage('Remote SSH') {
+                                // writeFile file: 'abc.sh', text: 'ls -lrt'
+                                // sshScript remote: remote, script: "abc.sh"
 
-                            //     // navigate to the project directory
-                            //     sshCommand remote: remote, command: 'cd ./app-infra'
-                            //     // pull the latest changes from the repository
-                            //     sshCommand remote: remote, command: 'git pull origin master'
-                            //     sshCommand remote: remote, command: 'touch hello.txt'
-                            //     // build the docker images using docker compose
-                            //     sshCommand remote: remote, command: 'docker-compose up -d --build'
-                            // }
-                            sshagent(credentials: ['ssh-ec2-credentials-key']) {
-                                sh '''
-                                ssh -o StrictHostKeyChecking=no ubuntu@54.206.125.96 << EOF
-                                    cd ./app-infra
-                                    git pull origin master
-                                    docker-compose up -d --build
-                                EOF
-                                '''
+                                // navigate to the project directory
+                                sshCommand remote: remote, command: 'cd ./app-infra && ls -lart'
+                                // pull the latest changes from the repository
+                                // sshCommand remote: remote, command: 'git pull origin master'
+                                // sshCommand remote: remote, command: 'touch hello.txt'
+                                // build the docker images using docker compose
+                                // sshCommand remote: remote, command: 'docker-compose up -d --build'
                             }
+                            // sshagent(credentials: ['ssh-ec2-credentials-key']) {
+                            //     sh '''
+                            //     ssh -o StrictHostKeyChecking=no $USER@$HOST << EOF
+                            //         cd ./app-infra
+                            //         git pull origin master
+                            //         docker-compose up -d --build
+                            //     EOF
+                            //     '''
+                            // }
                                     
                         }
 
